@@ -1,15 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Sora", Helvetica, sans-serif;
 }
 
 /* Navbar */
 nav {
   display: flex;
+  position: relative;
   background: #f4f3f3;
   height: 7vh;
+  box-shadow: 0 1px 2px rgba(137, 43, 226, 0.342);
+  z-index: 20;
+  font-weight: 850;
+  animation: first-load 0.6s ease;
 }
 
 nav div {
@@ -41,6 +48,7 @@ nav ul li {
 nav ul li a {
   color: #000000;
   text-decoration: none;
+  transition: 0.25s ease;
 }
 
 nav ul li a.list-active {
@@ -56,17 +64,36 @@ nav .right-side a {
   border-radius: 10px;
   color: #fff;
   text-decoration: none;
+  transition: 0.25s ease;
 }
 
 /* Blog Form */
+.blog {
+  background-image: url("assets/cover6.jpg");
+  padding-bottom: 40px;
+}
 .blog-form {
   padding: 50px 0;
   display: flex;
   justify-content: center;
+  position: relative;
+  animation: first-load 0.6s ease;
+}
+
+form {
+  padding: 20px;
+  background-color: rgba(228, 228, 228, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 0 2px rgb(219, 218, 218);
+  z-index: 10;
+  transition: 0.6s ease;
 }
 
 .blog-form .form-container {
   width: 500px;
+  z-index: 10;
 }
 
 .blog-form .form-container h1 {
@@ -134,10 +161,11 @@ select {
   border: none;
   color: #fff;
   cursor: pointer;
+  transition: 0.25s ease;
 }
 
 .blog hr {
-  border: 1px solid #dbdbdb;
+  border: 1px solid #9c9c9c;
   width: 80%;
   margin-right: auto;
   margin-left: auto;
@@ -159,6 +187,10 @@ select {
   border: 2px solid #dbdbdb;
   border-radius: 8px;
   display: flex;
+  background-color: rgba(255,255,255,0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid white;
+  box-shadow: 0 0 1px rgb(255, 254, 254);
 }
 
 .blog .blog-list .blog-list-item .blog-image {
@@ -172,6 +204,7 @@ select {
 }
 
 .blog .blog-list .blog-list-item .blog-content {
+  position: relative;
   padding-left: 20px;
   flex: 2;
 }
@@ -252,4 +285,108 @@ select {
   font-size: 24px;
   line-height: 140%;
   text-align: justify;
+}
+
+.blog-list-item .blog-content .time p {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: end;
+}
+/* for buble */
+.circle,.circle2,.circle3,.circle4,.circle5,.circle6{
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circle{
+  padding: 100px;
+  bottom: 40px;
+  left: 60px;
+  background-color: rgb(136, 18, 253);
+  opacity: 0.4;
+}
+
+.circle2{
+  padding: 50px;
+  top: 40%;
+  left: 20%;
+  background-color: rgb(255, 231, 11);
+  opacity: 0.4;
+}
+
+.circle3{
+  padding: 100px;
+  right: 5%;
+  background-color: pink;
+}
+
+.circle4{
+  padding: 50px;
+  bottom: 0;
+  right: 20%;
+  background-color:rgb(143, 33, 247);
+}
+
+.circle5{
+  padding: 60px;
+  top: 0;
+  right: 80%;
+  background-color: orange;
+}
+
+.circle6{
+  padding: 60px;
+  top: 100px;
+  background-color: rgb(209, 68, 228);
+}
+
+.square{
+  padding: 50px;
+  position: absolute;
+  z-index: 1;
+  border-radius: 20%;
+  top: 20px;
+  right: 31%;
+  transform: rotate(45deg);
+  background-color: rgb(255, 35, 189);
+  animation: squareanm 20s ease infinite;
+}
+
+
+
+.home:hover{
+  color: #ec4d37;
+}
+nav .right-side a:hover{
+  background-color: rgb(250, 213, 90);
+  color: black;
+}
+.blog-form form button:hover{
+  background-color: rgb(250, 213, 90);
+  color: black;
+}
+form:hover{
+  backdrop-filter: blur(5px);
+}
+
+/*  */
+@keyframes squareanm{
+  0%{
+      transform: rotate(0);
+  }
+  100%{
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes first-load{
+  from{
+      opacity: 0;
+  }
+  to{
+      opacity: 1;
+  }
 }

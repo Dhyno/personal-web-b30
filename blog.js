@@ -1,16 +1,15 @@
 let blogCont=[];
 function addBlog(event){
-    // console.log(event);
     event.preventDefault();
-    // console.log("hello");
 
     let title=document.getElementById('input-blog-title').value;
     let content=document.getElementById('input-blog-content').value;
     let image=document.getElementById('input-blog-image').files;
     
-    // console.log(image);
-    image=URL.createObjectURL(image[0]);
-    // console.log(image);
+    if(title==''||content==''||!image.length){
+      alert("please fill form and upload image");
+    }
+    image=URL.createObjectURL(image[0]);//return url with hash
     
     let blog={
         title: title,
@@ -26,6 +25,7 @@ function addBlog(event){
 function render(){
     let content=document.getElementById('contents');
     content.innerHTML='';
+    content.innerHTML=getDefault();
     for(let i=0; i<blogCont.length;i++){
         content.innerHTML+=`
         <div class="blog-list-item">
@@ -48,7 +48,7 @@ function render(){
             <p>
               ${blogCont[i].content}
             </p>
-            <div>
+            <div class="time">
               <p>${getDistanceTIme(blogCont[i].date)}</P>
             </div>
           </div>
@@ -104,92 +104,41 @@ function getDistanceTIme(time){
   }
 }
 
+function getDefault(){
+  return `
+    <div class="blog-list-item">
+      <div class="blog-image">
+        <img src="assets/blog-img.png" alt="" />
+      </div>
+      <div class="blog-content">
+        <div class="btn-group">
+          <button class="btn-edit">Edit Post</button>
+          <button class="btn-post">Post Blog</button>
+        </div>
+        <h1>
+          <a href="blog-detail.html" target="_blank"
+            >Pasar Coding di Indonesia Dinilai Masih Menjanjikan</a
+          >
+        </h1>
+        <div class="detail-blog-content">
+          12 Jul 2021 22:30 WIB | Ichsan Emrald Alamsyah
+        </div>
+        <p>
+          Ketimpangan sumber daya manusia (SDM) di sektor digital masih
+          menjadi isu yang belum terpecahkan. Berdasarkan penelitian
+          ManpowerGroup, ketimpangan SDM global, termasuk Indonesia,
+          meningkat dua kali lipat dalam satu dekade terakhir. Lorem ipsum,
+          dolor sit amet consectetur adipisicing elit. Quam, molestiae
+          numquam! Deleniti maiores expedita eaque deserunt quaerat! Dicta,
+          eligendi debitis?
+        </p>
+        <div class="time">
+              <p>1 month ago</p>
+            </div>
+      </div>     
+  </div>;`
+}
+
 // setInterval(() => {
 //   render();
 // }, 1000);
-
-
-
-
-
-// let waktu=new Date();
-// console.log(waktu);
-// console.log(waktu.getDate());
-// console.log(waktu.getMonth());
-// console.log(waktu.getFullYear());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//meet 5
-
-// let name="leo";
-// let name1="willy";
-// let name2="putra";
-
-// let names=["leo","wily","putra"];
-// console.log(names[0]);
-
-// //object
-// let dataSiswa={
-//     name:"rino",
-//     email:"rino@gmail.com",
-//     adress:"bukittinggi",
-//     hoby:"programming"
-// }
-// console.log(dataSiswa);
-// console.log(dataSiswa.name);
-
-// //array object
-// let studentData=[
-//     {
-//         name:"rino",
-//         email:"rino@gmail.com",
-//         adress:"bukittinggi",
-//         hoby:"programming"
-//     },
-//     {
-//         name:"dhyno",
-//         email:"dhyno@gmail.com",
-//         adress:"isekai",
-//         hoby:"weeb"
-//     }
-// ]
-// console.log(studentData);
-// console.log(studentData[0].email);
-// studentData[0].add="add data";
-// console.log(studentData);

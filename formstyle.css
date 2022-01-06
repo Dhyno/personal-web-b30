@@ -4,6 +4,7 @@ body,html{
     margin: 0;
     padding:0;
     font-family: 'Sora',Helvetica,sans-serif;
+    animation: first-load 1s ease;
 }
 ul li{
     list-style: none;
@@ -317,5 +318,13 @@ footer img:hover{
     }
     100%{
         transform: rotate(360deg);
+    }
+}
+@keyframes first-load{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
     }
 }
