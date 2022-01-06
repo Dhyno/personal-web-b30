@@ -8,6 +8,7 @@ function addBlog(event){
     
     if(title==''||content==''||!image.length){
       alert("please fill form and upload image");
+      return;
     }
     image=URL.createObjectURL(image[0]);//return url with hash
     
