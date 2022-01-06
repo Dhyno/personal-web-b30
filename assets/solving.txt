@@ -1,0 +1,12 @@
+solving for when render component default html not gone from page when render is run:
+-move default html blog to js as html fragment
+	step: id content must be global for default when web is load
+		make html string in function var it depend
+		after emptty content blog it must fill with default html before load with render
+		get temp variable to take all html fragment
+		in the end render all of html fragment that already store in temp
+	problem: too many source code in js
+
+-use outerHTML feature that convert object t0 string
+	
+	problem:first blog list get double margin top->unsolved
