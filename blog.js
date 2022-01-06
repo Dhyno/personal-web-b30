@@ -140,6 +140,6 @@ function getDefault(){
   </div>;`
 }
 
-// setInterval(() => {
-//   render();
-// }, 1000);
+setInterval(() => {
+  render();
+}, 1000);
