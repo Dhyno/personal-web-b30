@@ -1,64 +1,64 @@
 let blogCont=[];
 function addBlog(event){
-    event.preventDefault();
+  event.preventDefault();
 
-    let title=document.getElementById('input-blog-title').value;
-    let content=document.getElementById('input-blog-content').value;
-    let image=document.getElementById('input-blog-image').files;
-    
-    if(title==''||content==''||!image.length){
-      alert("please fill form and upload image");
-      return;
-    }
-    image=URL.createObjectURL(image[0]);//return url with hash
-    
-    let blog={
-        title: title,
-        content: content,
-        image: image,
-        author:'Rino Saputr',
-        date: new Date()
-    }
-    blogCont.push(blog);
-    render();
+  let title=document.getElementById('input-blog-title').value;
+  let content=document.getElementById('input-blog-content').value;
+  let image=document.getElementById('input-blog-image').files;
+  
+  if(title==''||content==''||!image.length){
+    alert("please fill form and upload image");
+    return;
+  }
+  image=URL.createObjectURL(image[0]);//return url with hash
+  
+  let blog={
+    title: title,
+    content: content,
+    image: image,
+    author:'Rino Saputr',
+    date: new Date()
+  }
+  blogCont.push(blog);
+  render();
 }
 
 function render(){//render all blog
   let render_content='';
-    let content=document.getElementById('contents');
-    content.innerHTML='';
-    content.innerHTML=getDefault();
-    for(let i=0; i<blogCont.length;i++){
-        content.innerHTML+=`
-        <div class="blog-list-item">
-          <div class="blog-image">
-            <img src="${blogCont[i].image}" alt="" />
+  let content=document.getElementById('contents');
+  content.innerHTML='';
+  content.innerHTML=getDefault();
+  for(let i=0; i<blogCont.length;i++){
+      content.innerHTML+=`
+      <div class="blog-list-item">
+        <div class="blog-image">
+          <img src="${blogCont[i].image}" alt="" />
+        </div>
+        <div class="blog-buble"></div>
+        <div class="blog-buble2"></div>
+        <div class="blog-content">
+          <div class="btn-group">
+            <button class="btn-edit">Edit Post</button>
+            <button class="btn-post">Post Blog</button>
           </div>
-          <div class="blog-buble"></div>
-          <div class="blog-buble2"></div>
-          <div class="blog-content">
-            <div class="btn-group">
-              <button class="btn-edit">Edit Post</button>
-              <button class="btn-post">Post Blog</button>
-            </div>
-            <h1>
-              <a href="blog-detail.html" target="_blank">
-                ${blogCont[i].title}
-              </a>
-            </h1>
-            <div class="detail-blog-content">
-              ${GetFullTime(blogCont[i].date)} | ${blogCont[i].author}
-            </div>
-            <p class="text-cntn">
-              ${render_content=(blogCont[i].content.length>=400) ? blogCont[i].content.slice(0,400)+"..." : blogCont[i].content}
-            </p>
-            <div class="time">
-              <p>${getDistanceTIme(blogCont[i].date)}</P>
-            </div>
+          <h1>
+            <a href="blog-detail.html" target="_blank">
+              ${blogCont[i].title}
+            </a>
+          </h1>
+          <div class="detail-blog-content">
+            ${GetFullTime(blogCont[i].date)} | ${blogCont[i].author}
+          </div>
+          <p class="text-cntn">
+            ${render_content=(blogCont[i].content.length>=400) ? blogCont[i].content.slice(0,400)+"..." : blogCont[i].content}
+          </p>
+          <div class="time">
+            <p>${getDistanceTIme(blogCont[i].date)}</P>
           </div>
         </div>
-      </div>`;
-    }
+      </div>
+    </div>`;
+  }
 }
 
 //filter content word if content have too long word default length from first blog that have 390 char
