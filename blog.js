@@ -23,7 +23,8 @@ function addBlog(event){
     render();
 }
 
-function render(){
+function render(){//render all blog
+  let render_content='';
     let content=document.getElementById('contents');
     content.innerHTML='';
     content.innerHTML=getDefault();
@@ -33,6 +34,8 @@ function render(){
           <div class="blog-image">
             <img src="${blogCont[i].image}" alt="" />
           </div>
+          <div class="blog-buble"></div>
+          <div class="blog-buble2"></div>
           <div class="blog-content">
             <div class="btn-group">
               <button class="btn-edit">Edit Post</button>
@@ -46,8 +49,8 @@ function render(){
             <div class="detail-blog-content">
               ${GetFullTime(blogCont[i].date)} | ${blogCont[i].author}
             </div>
-            <p>
-              ${blogCont[i].content}
+            <p class="text-cntn">
+              ${render_content=(blogCont[i].content.length>=400) ? blogCont[i].content.slice(0,400)+"..." : blogCont[i].content}
             </p>
             <div class="time">
               <p>${getDistanceTIme(blogCont[i].date)}</P>
@@ -56,6 +59,19 @@ function render(){
         </div>
       </div>`;
     }
+}
+
+//filter content word if content have too long word default length from first blog that have 390 char
+
+
+//just render div with classname .time
+function renderTime(){//render just div with class time
+  let sec=document.querySelectorAll(".time");
+  if(sec.length>1){
+    for(let i=1;i<sec.length;i++){//not use for each because get indeks from 1 not 0,1 is second blog not default blog
+      sec[i].innerHTML= `<p>${getDistanceTIme(blogCont[i-1].date)}</P>`
+    }
+  }
 }
 
 //meet 6
@@ -111,6 +127,8 @@ function getDefault(){
       <div class="blog-image">
         <img src="assets/blog-img.png" alt="" />
       </div>
+      <div class="blog-buble"></div>
+      <div class="blog-buble2"></div>
       <div class="blog-content">
         <div class="btn-group">
           <button class="btn-edit">Edit Post</button>
@@ -124,7 +142,7 @@ function getDefault(){
         <div class="detail-blog-content">
           12 Jul 2021 22:30 WIB | Ichsan Emrald Alamsyah
         </div>
-        <p>
+        <p class="text-cntn">
           Ketimpangan sumber daya manusia (SDM) di sektor digital masih
           menjadi isu yang belum terpecahkan. Berdasarkan penelitian
           ManpowerGroup, ketimpangan SDM global, termasuk Indonesia,
@@ -137,9 +155,22 @@ function getDefault(){
               <p>1 month ago</p>
             </div>
       </div>     
-  </div>;`
+    </div>`
 }
 
-setInterval(() => {
-  render();
+setInterval(()=>{
+  renderTime();//render just div with class time cause want to implement animation on each blog
 }, 1000);
+
+// for brger menu
+let burger=document.querySelector(".burger");
+let getLine=document.querySelectorAll(".burger span");
+let nav=document.querySelector("nav");
+burger.addEventListener('click',function(){
+
+  burger.classList.toggle("burger-act");//for fixed position
+  nav.classList.toggle("deactive-nav");//for show navbar
+  getLine.forEach((elem,indeks)=>{
+    elem.classList.toggle(`line${indeks+1}`);//for animate line burger
+  });
+});
